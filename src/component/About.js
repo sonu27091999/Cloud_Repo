@@ -3,14 +3,10 @@ import { useContext,useEffect } from 'react'      // or import React, {useContex
 import noteContext from '../context/notes/noteContext'
 
 export default function About() {
-    const a = useContext(noteContext);
-    useEffect(() => {
-     a.update();
-    }, [])
-    
+
     return (
         <div>
-            This is About {a.state.name} and he is class in {a.state.class}.
+            This is About.
         </div>
     )
 }
