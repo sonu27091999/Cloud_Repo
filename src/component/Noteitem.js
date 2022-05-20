@@ -8,7 +8,9 @@ function NoteItem(props) {
                     <div className="card-body">
                         <h5 className="card-title">{note.title}</h5>
                         <p className="card-text">{note.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum exercitationem quam eius quia doloremque et quos nihil, optio minus quae deserunt dolore nobis eligendi quo delectus necessitatibus facere unde rerum veritatis sapiente, eaque, minima nisi!</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                        {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                        <i className="fa-solid fa-trash-can fa-2x mx-2"></i>
+                        <i className="fa-solid fa-pen-to-square fa-2x"></i>
                     </div>
             </div>
         </div>
