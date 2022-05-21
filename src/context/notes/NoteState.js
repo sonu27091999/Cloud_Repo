@@ -31,11 +31,11 @@ const NoteState = (props) => {
         'Content-Type': 'application/json',
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI4NDcxNDI0ZGIyYTFhNjFlNDIxN2Q0In0sImlhdCI6MTY1Mjg0ODQ4NX0.EvX4rktV2U43K51pWHK5Ht4Hu1z-FCA44UkeoQNBi5s'
       },
-      body: JSON.stringify({title,description,tag})
+      body: JSON.stringify({ title, description, tag })
     });
     const json = response.json();
 
-      //Logic to addnote in client
+    //Logic to addnote in client
     console.log('Adding a note');
     const note = {
       "_id": "62848fed4e445ksjkdc8dsds9bb514e",
@@ -49,9 +49,18 @@ const NoteState = (props) => {
     setNotes(notes.concat(note));
   }
   // Delete a Note
-  const deleteNote = (id) => {
+  const deleteNote = async (id) => {
     console.log('Deleting a Note' + id);
-    //todo API call
+    //API call
+    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI4NDcxNDI0ZGIyYTFhNjFlNDIxN2Q0In0sImlhdCI6MTY1Mjg0ODQ4NX0.EvX4rktV2U43K51pWHK5Ht4Hu1z-FCA44UkeoQNBi5s'
+      },
+    });
+    const json = response.json();
+    console.log(json);
     let newNotes = notes.filter((note) => { return note._id !== id })
     setNotes(newNotes);
   }
@@ -64,7 +73,7 @@ const NoteState = (props) => {
         'Content-Type': 'application/json',
         'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjI4NDcxNDI0ZGIyYTFhNjFlNDIxN2Q0In0sImlhdCI6MTY1Mjg0ODQ4NX0.EvX4rktV2U43K51pWHK5Ht4Hu1z-FCA44UkeoQNBi5s'
       },
-      body: JSON.stringify({title,description,tag})
+      body: JSON.stringify({ title, description, tag })
     });
     const json = response.json();
 
@@ -80,7 +89,7 @@ const NoteState = (props) => {
   }
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote,getNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
       {props.children}
     </NoteContext.Provider>
   )
