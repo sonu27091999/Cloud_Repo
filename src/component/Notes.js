@@ -3,7 +3,7 @@ import noteContext from '../context/notes/noteContext';
 import NoteItem from './Noteitem';
 import AddNote from './AddNote';
 
-export default function Notes() {
+export default function Notes(props) {
     const context = useContext(noteContext);
     const { notes, getNotes,editNote } = context;
     useEffect(() => {
@@ -27,11 +27,12 @@ export default function Notes() {
         console.log('Updating the note...', note);
         editNote(note.id,note.etitle,note.edescription,note.etag);
         refClose.current.click();
+        props.showAlert('Updated Successfully','success');
     }
 
     return (
         <div>
-            <AddNote />
+            <AddNote showAlert={props.showAlert}/>
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal" ref={ref}>
                 Edit a Note
             </button>
@@ -72,7 +73,7 @@ export default function Notes() {
                     {notes.length===0&&'No notes to display.'}
                 </div>
                 {notes.map((note) => {
-                    return <NoteItem key={note._id} updateNote={updateNote} note={note} />;
+                    return <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert}/>;
                 })}
             </div>
         </div>
